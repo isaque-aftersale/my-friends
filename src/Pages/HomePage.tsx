@@ -18,9 +18,11 @@ export default function HomePage() {
 
   return (
     <div className="flex flex-col justify-around p-3">
-      <div>
+      <div className="flex flex-wrap-reverse justify-between">
         {connected && <Profile handleDisconnect={handleDisconnect} />}
         {!connected && <CreateConnect handleConnect={handleConnect} />}
+
+        <h1 className="p-3 text-2xl font-bold text-center">My Friends</h1>
       </div>
 
       <div className="my-3 bg-blue-700 rounded-t">

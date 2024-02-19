@@ -28,7 +28,7 @@ export default function Profile(props: Props) {
       >
         {alert}
       </p>
-      <div className="flex content-center h-14">
+      <div className="flex content-center h-20">
         <img
           src="https://icons.veryicon.com/png/o/internet--web/prejudice/user-128.png"
           alt="icon"
