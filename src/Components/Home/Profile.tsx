@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { contactsAction } from '../../redux/contactsSlice';
 import { RootState } from '../../redux/store';
 import { userAction } from '../../redux/userSlice';
 import { socket } from '../../socket';
@@ -29,6 +30,7 @@ export default function Profile(props: Props) {
     socket.disconnect();
 
     dispatch(userAction.disconnect());
+    dispatch(contactsAction.deleteAll());
 
     setAlert("User disconected");
 

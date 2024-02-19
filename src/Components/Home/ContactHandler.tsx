@@ -1,7 +1,7 @@
 import { ChangeEvent, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { contactAction } from '../../redux/contactsSlice';
+import { contactsAction } from '../../redux/contactsSlice';
 import { RootState } from '../../redux/store';
 import { socket } from '../../socket';
 import Button from '../Generics/Button';
@@ -22,7 +22,7 @@ export default function ContactHandler() {
     socket.emit("user-save-contact", { id: contactIdInputValue });
 
     socket.on("user-save-contact", (contact) => {
-      dispatch(contactAction.saveContact(contact));
+      dispatch(contactsAction.saveContact(contact));
       socket.off("user-save-contact");
     });
   }

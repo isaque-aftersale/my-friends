@@ -1,14 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit';
 
 import { Chat, chatReducer } from './chatSlice';
-import { contactReducer, Contacts } from './contactsSlice';
+import { Contacts, contactsReducer } from './contactsSlice';
 import { User, userReducer } from './userSlice';
 
 const store = configureStore({
   reducer: {
     user: userReducer,
     chat: chatReducer,
-    contacts: contactReducer,
+    contacts: contactsReducer,
   },
 });
 
