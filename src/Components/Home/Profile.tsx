@@ -1,14 +1,17 @@
-import { ClipboardEvent, MouseEvent, MouseEventHandler, useState } from 'react';
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
 
+import { RootState } from '../../redux/store';
+import { socket } from '../../socket';
 import Button from '../Generics/Button';
 
 export type Props = {
-  handleDisconnect: MouseEventHandler;
+  setConnected: (is: boolean) => void;
 };
 
 export default function Profile(props: Props) {
-  const { handleDisconnect } = props;
-  const user = { id: "123", name: "Isaque" };
+  const { setConnected } = props;
+  const user = useSelector((state: RootState) => state.user);
   const [alert, setAlert] = useState<string | null>(null);
 
   function handleCopyID() {
@@ -18,6 +21,14 @@ export default function Profile(props: Props) {
     setTimeout(() => {
       setAlert(null);
     }, 1000);
+  }
+
+  function handleDisconnect() {
+    socket.disconnect();
+
+    setAlert("User disconected");
+
+    setConnected(false);
   }
 
   return (
@@ -48,7 +59,7 @@ export default function Profile(props: Props) {
         <Button
           text="Disconect"
           className="px-1 font-medium text-red-200 bg-red-600 rounded-r"
-          onClick={(e) => handleDisconnect(e)}
+          onClick={handleDisconnect}
         />
       </div>
     </>

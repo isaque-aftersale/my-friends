@@ -22,9 +22,10 @@ const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    connect(state, data) {
-      state.id = data.payload.id;
-      state.connected = data.payload.connected;
+    connect(state, { payload }) {
+      state.id = payload.id;
+      state.name = payload.name;
+      state.connected = payload.connected;
     },
     disconnect(state) {
       state = initialState;
@@ -35,3 +36,5 @@ const userSlice = createSlice({
 export const userAction = userSlice.actions;
 
 export const userReducer = userSlice.reducer;
+
+export const userInitialState = initialState;

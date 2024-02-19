@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom';
+
 import Button from '../Generics/Button';
 
 export type Props = {
@@ -7,6 +9,11 @@ export type Props = {
 
 export default function Contact(props: Props) {
   const { id, name } = props;
+  const navigate = useNavigate();
+
+  function handleOpenChat() {
+    navigate(`/chat/${id}`);
+  }
 
   return (
     <li className="flex flex-wrap items-center content-center justify-around p-2 text-blue-100 bg-blue-700 border-blue-900 border-y-2">
@@ -19,7 +26,11 @@ export default function Contact(props: Props) {
         {id}
       </p>
       <div className="flex items-center justify-around flex-grow mt-2">
-        <Button text="Open Chat" className="p-2 bg-purple-500 rounded-2xl" />
+        <Button
+          text="Open Chat"
+          className="p-2 bg-purple-500 rounded-2xl"
+          onClick={handleOpenChat}
+        />
         <Button text="Remove Contact" className="p-2 bg-red-500 rounded-2xl" />
       </div>
     </li>

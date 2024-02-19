@@ -1,14 +1,42 @@
-import { MouseEventHandler } from 'react';
+import { ChangeEvent, useState } from 'react';
+import { useDispatch } from 'react-redux';
 
+import { userAction } from '../../redux/userSlice';
+import { socket } from '../../socket';
 import Button from '../Generics/Button';
 import Input from '../Generics/Input';
 
 export type Props = {
-  handleConnect: MouseEventHandler;
+  setConnected: (is: boolean) => void;
 };
 
 export default function CreateConnect(props: Props) {
-  const { handleConnect } = props;
+  const dispatch = useDispatch();
+  const [userNameInputValue, setUserNameInputValue] = useState("");
+  const { setConnected } = props;
+
+  function handleUserNameInput(e: ChangeEvent<HTMLInputElement>) {
+    const { target } = e;
+
+    setUserNameInputValue(target.value);
+  }
+
+  function handleConnect() {
+    socket.connect();
+
+    socket.on("connect", () => {
+      socket.emit("user-create-connection", {
+        name: userNameInputValue,
+      });
+
+      socket.on("user-create-connection", (user) => {
+        console.log(user);
+        dispatch(userAction.connect(user));
+      });
+    });
+
+    setConnected(true);
+  }
 
   return (
     <div className="w-max">
@@ -18,11 +46,12 @@ export default function CreateConnect(props: Props) {
       <Input
         placeholder="User Name"
         className="p-1 text-white bg-slate-600 rounded-bl-md"
+        onChange={handleUserNameInput}
       />
       <Button
         text="Connect"
         className="p-1 text-green-200 bg-green-600 rounded-br-md"
-        onClick={(e) => handleConnect(e)}
+        onClick={handleConnect}
       />
     </div>
   );

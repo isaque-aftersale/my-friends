@@ -8,19 +8,11 @@ import Profile from '../Components/Home/Profile';
 export default function HomePage() {
   const [connected, setConnected] = useState(false);
 
-  function handleDisconnect() {
-    setConnected(false);
-  }
-
-  function handleConnect() {
-    setConnected(true);
-  }
-
   return (
     <div className="flex flex-col justify-around p-3">
       <div className="flex flex-wrap-reverse justify-between">
-        {connected && <Profile handleDisconnect={handleDisconnect} />}
-        {!connected && <CreateConnect handleConnect={handleConnect} />}
+        {connected && <Profile setConnected={setConnected} />}
+        {!connected && <CreateConnect setConnected={setConnected} />}
 
         <h1 className="p-3 text-2xl font-bold text-center">My Friends</h1>
       </div>
