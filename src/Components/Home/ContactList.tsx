@@ -5,7 +5,7 @@ import Contact from './Contact';
 
 export default function ContactList() {
   const contacts = useSelector((state: RootState) => state.contacts);
-  console.log(contacts);
+
   return (
     <ul>
       {contacts.map((contact, key) => {

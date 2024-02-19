@@ -26,7 +26,7 @@ export default function CreateConnect(props: Props) {
 
     socket.on("connect", () => {
       socket.emit("user-create-connection", {
-        name: userNameInputValue,
+        name: userNameInputValue || "Anonymous",
       });
 
       socket.on("user-create-connection", (user) => {

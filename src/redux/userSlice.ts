@@ -28,7 +28,9 @@ const userSlice = createSlice({
       state.connected = payload.connected;
     },
     disconnect(state) {
-      state = initialState;
+      state.id = "";
+      state.name = "";
+      state.connected = false;
     },
   },
 });

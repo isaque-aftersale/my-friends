@@ -1,7 +1,8 @@
 import { ChangeEvent, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { contactAction } from '../../redux/contactsSlice';
+import { RootState } from '../../redux/store';
 import { socket } from '../../socket';
 import Button from '../Generics/Button';
 import Input from '../Generics/Input';
@@ -9,6 +10,7 @@ import Input from '../Generics/Input';
 export default function ContactHandler() {
   const dispatch = useDispatch();
   const [contactIdInputValue, setContactIdInputValue] = useState("");
+  const user = useSelector((state: RootState) => state.user);
 
   function handleContactIdInput(e: ChangeEvent<HTMLInputElement>) {
     const { target } = e;
@@ -25,7 +27,7 @@ export default function ContactHandler() {
     });
   }
 
-  return (
+  return user.connected ? (
     <div className="flex p-2">
       <Input
         placeholder="Contact ID"
@@ -38,5 +40,7 @@ export default function ContactHandler() {
         onClick={handleSaveContact}
       />
     </div>
+  ) : (
+    <></>
   );
 }

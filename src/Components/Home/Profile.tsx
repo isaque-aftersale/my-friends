@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { RootState } from '../../redux/store';
+import { userAction } from '../../redux/userSlice';
 import { socket } from '../../socket';
 import Button from '../Generics/Button';
 
@@ -13,6 +14,7 @@ export default function Profile(props: Props) {
   const { setConnected } = props;
   const user = useSelector((state: RootState) => state.user);
   const [alert, setAlert] = useState<string | null>(null);
+  const dispatch = useDispatch();
 
   function handleCopyID() {
     navigator.clipboard.writeText(user.id);
@@ -25,6 +27,8 @@ export default function Profile(props: Props) {
 
   function handleDisconnect() {
     socket.disconnect();
+
+    dispatch(userAction.disconnect());
 
     setAlert("User disconected");
 
