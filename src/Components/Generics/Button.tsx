@@ -1,7 +1,7 @@
 import { MouseEventHandler } from 'react';
 
 export type Props = {
-  text: string;
+  text?: string;
   onClick?: MouseEventHandler;
   className?: string;
 };
@@ -14,7 +14,7 @@ export default function Button(props: Props) {
       className={className ?? ""}
       onClick={(e) => (onClick ? onClick(e) : () => {})}
     >
-      {text}
+      {text ?? ""}
     </button>
   );
 }

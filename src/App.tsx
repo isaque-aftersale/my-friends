@@ -1,11 +1,9 @@
-import Chat from './Components/Chat/Chat';
-import HeaderTemplate from './Templates/HeaderTemplate';
+import HomePage from './Pages/HomePage';
 
 function App() {
   return (
     <>
-      <HeaderTemplate />
-      <Chat />
+      <HomePage />
     </>
   );
 }
