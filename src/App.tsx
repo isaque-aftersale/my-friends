@@ -1,7 +1,13 @@
-import Chat from "./Components/Chat/Chat";
+import Chat from './Components/Chat/Chat';
+import HeaderTemplate from './Templates/HeaderTemplate';
 
 function App() {
-  return <Chat />;
+  return (
+    <>
+      <HeaderTemplate />
+      <Chat />
+    </>
+  );
 }
 
 export default App;

@@ -4,7 +4,7 @@ export type Props = {
   onChange: ChangeEventHandler<HTMLInputElement>;
 };
 
-export default function FieldChat(props: Props) {
+export default function FieldSendTo(props: Props) {
   return (
     <input
       type="text"

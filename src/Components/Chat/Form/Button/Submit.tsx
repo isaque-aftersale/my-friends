@@ -1,4 +1,4 @@
-import { MouseEventHandler } from "react";
+import { MouseEventHandler } from 'react';
 
 export type Props = {
   onClick: MouseEventHandler;
@@ -9,7 +9,7 @@ export default function Submit(props: Props) {
 
   return (
     <button
-      className="p-1 font-medium text-green-900 bg-green-300 rounded"
+      className="p-1 font-medium text-purple-900 bg-purple-300 rounded"
       onClick={(e) => onClick(e)}
     >
       Submit
