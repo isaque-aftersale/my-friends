@@ -30,8 +30,8 @@ export default function CreateConnect(props: Props) {
       });
 
       socket.on("user-create-connection", (user) => {
-        console.log(user);
         dispatch(userAction.connect(user));
+        socket.off("user-create-connection");
       });
     });
 

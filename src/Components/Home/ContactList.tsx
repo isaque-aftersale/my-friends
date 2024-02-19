@@ -1,8 +1,11 @@
-import Contact, { Props } from './Contact';
+import { useSelector } from 'react-redux';
+
+import { RootState } from '../../redux/store';
+import Contact from './Contact';
 
 export default function ContactList() {
-  const contacts: Props[] = [];
-
+  const contacts = useSelector((state: RootState) => state.contacts);
+  console.log(contacts);
   return (
     <ul>
       {contacts.map((contact, key) => {
